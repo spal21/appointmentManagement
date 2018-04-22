@@ -34,7 +34,7 @@ public class UserController {
 
 	@RequestMapping(value = { "/getUser/{userID}/" }, method = RequestMethod.GET, headers = {
 			"Accept=application/xml", "Accept=application/json" }, produces = { "application/xml", "application/json" })
-	public ResponseEntity<UserResponse> findUserByID(@PathVariable("userID") String userID) throws Exception {
+	public ResponseEntity<UserResponse> getUser(@PathVariable("userID") String userID) throws Exception {
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(new UserResponse("Success", userService.findUserByUserID(userID)));
 	}
@@ -58,7 +58,7 @@ public class UserController {
 
 	@RequestMapping(value = { "/deleteUser/" }, method = RequestMethod.DELETE, headers = {
 			"Accept=application/json" })
-	public ResponseEntity<String> deleteUsert(@RequestBody DeleteUserRequest userRequest)
+	public ResponseEntity<String> deleteUser(@RequestBody DeleteUserRequest userRequest)
 			throws Exception {
 		User user = new DeleteUserImpl(userRequest.getUserID(),userRequest.getEmail());
 		user.validateParams();
